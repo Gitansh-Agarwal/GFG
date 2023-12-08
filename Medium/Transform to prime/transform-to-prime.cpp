@@ -31,6 +31,7 @@ class Solution
             if(isPrimeNumber(i)) 
                 return i-sum;
         }
+        return 0;
     }
 };
 
