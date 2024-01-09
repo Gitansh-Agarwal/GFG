@@ -10,32 +10,47 @@ class Solution
         vector <int> search(string pat, string txt)
         {
             //code here
-            int temp;
-            vector<int> ans;
-            if(pat.size()>txt.size()){
-                ans.push_back(-1);
-            }
-            else{
-                for(int i=0; i<txt.size(); i++){
-                    int temp = i;
-                    int j=0;
-                    if(txt[i] == pat[j]){
-                        i++;
-                        j++;
-                        while(j!=pat.size() && txt[i] == pat[j]){
-                            i++;
-                            j++;
-                        }
-                        if(j==pat.size()){
-                            ans.push_back(temp+1);
-                        }
-                        // i--;
-                    }
-                    i=temp;
+            // int temp;
+            // vector<int> ans;
+            // if(pat.size()>txt.size()){
+            //     ans.push_back(-1);
+            // }
+            // else{
+            //     for(int i=0; i<txt.size(); i++){
+            //         int temp = i;
+            //         int j=0;
+            //         if(txt[i] == pat[j]){
+            //             i++;
+            //             j++;
+            //             while(j!=pat.size() && txt[i] == pat[j]){
+            //                 i++;
+            //                 j++;
+            //             }
+            //             if(j==pat.size()){
+            //                 ans.push_back(temp+1);
+            //             }
+            //             // i--;
+            //         }
+            //         i=temp;
                     
+            //     }
+            // }
+            
+            // return ans;
+            
+            // OR
+            vector<int> ans;
+            int n = txt.size();
+            int m = pat.size();
+            if(m>n)
+                return {-1};
+            for(int i=0; i<n-m+1; i++){
+                if(txt[i] == pat[0]){
+                    if(txt.substr(i,m) == pat){
+                        ans.push_back(i+1);
+                    }
                 }
             }
-            
             return ans;
         }
      
