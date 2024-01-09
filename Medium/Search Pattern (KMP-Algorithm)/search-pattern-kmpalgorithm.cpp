@@ -7,6 +7,19 @@ using namespace std;
 class Solution
 {
     public:
+        vector<int> prefix_function(string s) {
+            int n = (int)s.length();
+            vector<int> pi(n);
+            for (int i = 1; i < n; i++) {
+                int j = pi[i-1];
+                while (j > 0 && s[i] != s[j])
+                    j = pi[j-1];
+                if (s[i] == s[j])
+                    j++;
+                pi[i] = j;
+            }
+            return pi;
+        }
         vector <int> search(string pat, string txt)
         {
             //code here
@@ -39,16 +52,35 @@ class Solution
             // return ans;
             
             // OR
+            //Using substr() function
+            // vector<int> ans;
+            // int n = txt.size();
+            // int m = pat.size();
+            // if(m>n)
+            //     return {-1};
+            // for(int i=0; i<n-m+1; i++){
+            //     if(txt[i] == pat[0]){
+            //         if(txt.substr(i,m) == pat){
+            //             ans.push_back(i+1);
+            //         }
+            //     }
+            // }
+            // return ans;
+            
+            //OR
+            //Using KMP- Algorithm
+            
+            string look = pat + '?' + txt;
+            
+            vector<int> kmp = prefix_function(look);
+            
             vector<int> ans;
-            int n = txt.size();
-            int m = pat.size();
-            if(m>n)
-                return {-1};
-            for(int i=0; i<n-m+1; i++){
-                if(txt[i] == pat[0]){
-                    if(txt.substr(i,m) == pat){
-                        ans.push_back(i+1);
-                    }
+            
+            int start = 2*pat.size();
+            
+            for(int i=start; i<look.size(); i++){
+                if(kmp[i] == pat.size()){
+                    ans.push_back(i-start+1);
                 }
             }
             return ans;
