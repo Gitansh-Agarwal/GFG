@@ -11,7 +11,7 @@ class Solution{
 public:
     long long sequence(int n){
         // code here
-        const long long mod = 1e9 + 7;
+        const int mod = 1e9 + 7;
         
         long long p = 1;
         long long ans = 0;
