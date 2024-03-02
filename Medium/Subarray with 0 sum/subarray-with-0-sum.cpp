@@ -14,40 +14,40 @@ class Solution{
     bool subArrayExists(int arr[], int n)
     {
         //Your code here
-        
-        //It takes around O(n^3) time so it given TLE error for below code.
-        // int sum;
-        // for(int sp=0; sp<n; sp++){
-            
-        //     for(int ep=sp; ep<n; ep++){
-                
-        //         sum=0;
-        //         for(int i=sp; i<=ep; i++){
-                    
-        //             sum+=arr[i];
-        //         }
-        //         if(sum==0){
-        //             return true;
-        //         }
-        //     }
-        // }
-        // return false;
-        
-        
-        //using prefix sum array and unordered_set
-        int sum = 0;
-        unordered_set<int> st;
-        for(int i=0; i<n; i++){
-            sum+=arr[i];
-            if(sum == 0){
-                return true;
-            }
-            if(st.find(sum)!=st.end()){
-                return true;
-            }
-            st.insert(sum);
-        }
-        return false;
+        //Brute Force Solution
+    	//Below Solution is Partially Accepted.
+    	//TC=O(N^2), extra SC=O(1).
+    	
+        // 	for(int i=0; i<n; i++){
+        // 		long long int sum=0;
+        // 		for(int j=i; j<n; j++){
+        // 			sum+=arr[j];
+        // 			if(sum==0){
+        // 				return true;
+        // 			}
+        // 		}
+        // 	}
+        // 	return false;
+    	
+    	
+    	
+    	//Better Solution
+    	//TC=O(N), extra SC=O(N).
+    	
+    	unordered_map<int, int> mpp;
+    	int prefixSum=0;
+    	
+    	for(int i=0; i<n; i++){
+    		prefixSum+=arr[i];
+    		if(prefixSum == 0 || mpp.find(prefixSum) != mpp.end()){
+    			return true;
+    		}
+    		
+    		mpp[prefixSum] = i;
+    		
+    	}
+    	return false;
+
     }
 };
 
