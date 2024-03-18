@@ -12,22 +12,42 @@ class Solution{
     int findFloor(vector<long long> v, long long n, long long x){
         
         // Your code here
-        long long low=0;
-        long long high=n-1;
-        while(low <= high){
-            long long mid=(low+high)/2;
-            if(v[mid] == x){
-                return mid;
-            }
-            else if(v[mid] < x){
-                low=mid+1;
-            }
-            else{
-                high=mid-1;
-            }
-        }
-        return high;
+        //Below Solution is my approach based on evaluation and dry run of the given test cases.
+        //TC=O(logn).
+        // long long low=0;
+        // long long high=n-1;
+        // while(low <= high){
+        //     long long mid=(low+high)/2;
+        //     if(v[mid] == x){
+        //         return mid;
+        //     }
+        //     else if(v[mid] < x){
+        //         low=mid+1;
+        //     }
+        //     else{
+        //         high=mid-1;
+        //     }
+        // }
+        // return high;
         
+        
+        
+        //ACtual Correct Solution
+        //TC=O(logn).
+        long long ans=-1;
+    	long long low=0;
+    	long long high=n-1;
+    	while(low<=high){
+    		long long mid=(low+high)/2;
+    		if(v[mid]<=x){
+    			ans=mid;
+    			low=mid+1;
+    		}
+    		else{
+    			high=mid-1;
+    		}
+    	}
+    	return ans;
     }
 };
 
