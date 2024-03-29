@@ -15,15 +15,70 @@ class Solution
     int peakElement(int arr[], int n)
     {
        // Your code here
-       
-
-      int l=0,h=n-1;
-       while(l<h){
-           int mid=(l+h)/2;
-           if(arr[mid]<arr[mid+1]) l=mid+1;
-           else h=mid;
-       }
-       return l;
+       //trying out linear search
+        // TC=O(N).
+        // int n=arr.size();
+        // int peakElement;
+        // if(n==1){
+        //     return 0;
+        // } 
+        // int i;
+        // for(i=0; i<n; i++){
+        //     if(i==0){
+        //         if(arr[i]>=arr[i+1]){
+        //             // return i;
+        //             break;
+        //         }
+        //     }
+        //     else if(i==n-1){
+        //         if(arr[i]>=arr[i-1]){
+        //             // return i;
+        //             break;
+        //         }
+        //     }
+        //     else{
+        //         if(arr[i]>=arr[i-1] && arr[i]>=arr[i+1]){
+        //             // return i;
+        //             break;
+        //         }
+        //     }
+        // }
+        // return i;
+        
+        
+        
+        // Using Binary Search
+        // TC=O(logN).
+        // int n=arr.size();
+        // if(n==1){
+        //     return 0;
+        // }
+        // if(arr[0]>arr[1]){
+        //     return 0;
+        // }
+        // if(arr[n-1]>arr[n-2]){
+        //     return n-1;
+        // }
+        // int low=1;
+        // int high=n-2;
+        // while(low<=high){
+        //     int mid=(low+high)/2;
+        //     if(arr[mid]>arr[mid-1] && arr[mid]>arr[mid+1]){
+        //         return mid;
+        //     }
+        //     else if(arr[mid]>arr[mid-1]){
+        //         low=mid+1;
+        //     }
+        //     else if(arr[mid]>arr[mid+1]){
+        //         high=mid-1;
+        //     }
+        //     else{
+        //         low=mid+1;
+        //         // or
+        //         // high=mid-1;
+        //     }
+        // }
+        // return -1;
     }
 };
 
