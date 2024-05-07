@@ -39,25 +39,44 @@ class Solution{
         // if(head->next==nullptr){
         //     return nullptr;
         // }
-        // Node* del=nullptr;
+        // Node* prev=nullptr;
         // Node* slow=head;
         // Node* fast=head;
-        // while(head->next!=nullptr && head->next->next!=nullptr){
-            
+        // while(fast->next!=nullptr && fast->next->next!=nullptr){
+        //     fast=fast->next->next;
+        //     prev=slow;
+        //     slow=slow->next;
+        // }
+        // if(fast->next!=nullptr && fast->next->next==nullptr){
+        //     prev = slow->next;
+        //     slow->next=slow->next->next;
+        //     delete(prev);
+        // }
+        // else{
+        //     prev->next=slow->next;
+        //     delete(slow);
         // }
         
-        if(head->next == NULL){
-            return NULL;
+        // return head;
+        
+        Node *slow=head, *fast=head;
+        Node *prev=nullptr;
+        
+        if(head->next==nullptr){
+            delete head;
+            return nullptr;
         }
         
-         Node* fast=head, *slow=head, *prev=NULL;
-        while(fast && fast->next){
-            fast=fast->next->next;
+        while(fast!=nullptr && fast->next!=nullptr){
             prev=slow;
             slow=slow->next;
+            fast=fast->next->next;
         }
         
         prev->next=slow->next;
+        slow->next=nullptr;
+        delete slow;
+        
         return head;
     }
 };
