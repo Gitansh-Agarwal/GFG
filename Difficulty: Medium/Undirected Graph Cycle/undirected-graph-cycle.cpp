@@ -6,28 +6,29 @@ using namespace std;
 class Solution {
   public:
     // Function to detect cycle in an undirected graph.
-    // bool bfs(int src, vector<int> adj[],int vis[]){
-    //     vis[src]=1;
-    //     queue<pair<int, int>> q;
-    //     q.push({src, -1});
+    bool bfs(int src, vector<int> adj[],int vis[]){
+        vis[src]=1;
+        queue<pair<int, int>> q;
+        q.push({src, -1});
         
-    //     while(!q.empty()){
-    //         int node= q.front().first;
-    //         int parent=q.front().second;
+        while(!q.empty()){
+            int node= q.front().first;
+            int parent=q.front().second;
+            q.pop();
             
-    //         for(auto adjacentNode: adj[node]){
-    //             if(!vis[adjacentNode]){
-    //                 vis[adjacentNode]=1;
-    //                 q.push({adjacentNode, node});
-    //             }
-    //             else if(parent != adjacentNode){
-    //                 return true;
-    //             }
-    //         }
-    //     }
-    //     return false;
+            for(auto adjacentNode: adj[node]){
+                if(!vis[adjacentNode]){
+                    vis[adjacentNode]=1;
+                    q.push({adjacentNode, node});
+                }
+                else if(parent != adjacentNode){
+                    return true;
+                }
+            }
+        }
+        return false;
         
-    // }
+    }
     
     
     
@@ -55,13 +56,14 @@ class Solution {
         //Using BFS Traversal.
         //TC=O(V){for connected components} + O(V+2E){for bfs traversal}.
         //SC=O(V){queue as it will contain at max all the vertices or nodes of the graph.}
-        // int vis[V]={0};
-        // for(int i=0; i<V; i++){
-        //     if(!vis[i]){
-        //         if(bfs(i, ))
-        //         bfs(i, adj, vis);
-        //     }
-        // }
+        int vis[V]={0};
+        for(int i=0; i<V; i++){
+            if(!vis[i]){
+                if(bfs(i, adj, vis) == true)
+                    return true;
+            }
+        }
+        return false;
         
         
         
@@ -69,18 +71,19 @@ class Solution {
         //TC=O(V){for connected components} + O(V+2E){for DFS Traversal}.
         //SC=O(V).{Max Recursive Stack Space as it can call for at max all the elements/nodes
         // in the graph.
-            int vis[V]={0};
-            for(int i=0; i<V; i++){
-                if(!vis[i]){
-                    if(dfs(i, -1, adj, vis) == true){
-                        return true;
-                    }
-                }
-            }
-            return false;
+        // int vis[V]={0};
+        // for(int i=0; i<V; i++){
+        //     if(!vis[i]){
+        //         if(dfs(i, -1, adj, vis) == true){
+        //             return true;
+        //         }
+        //     }
+        // }
+        // return false;
         }
     
 };
+
 
 //{ Driver Code Starts.
 int main() {
