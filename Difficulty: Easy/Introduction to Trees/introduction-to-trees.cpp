@@ -12,9 +12,19 @@ using namespace std;
 
 class Solution {
   public:
+    int power(int num, int powerOnNum){
+        if(powerOnNum == 0){
+            return 1;
+        }
+        int result = num;
+        for(int i=0; i<powerOnNum-1; i++){
+            result*=num;
+        }
+        return result;
+    }
     int countNodes(int i) {
         // your code here
-        return pow(2, i-1);
+        return power(2, i-1);
     }
 };
 
@@ -31,7 +41,9 @@ int main() {
 
         cout << res;
         cout << "\n";
-    }
+    
+cout << "~" << "\n";
+}
 }
 
 // } Driver Code Ends
